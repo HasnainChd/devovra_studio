@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  
+  <!-- SEO Primary Meta Tags -->
+  <title>Devora Studios | Premium Flutter & Cross-Platform App Development</title>
+  <meta name="title" content="Devora Studios | Premium Flutter & Cross-Platform App Development">
+  <meta name="description" content="Devora Studios designs and engineers premium Android, iOS, and Web solutions using Flutter. Clean code bases, scalable architectures, and beautiful interfaces.">
+  <meta name="keywords" content="Flutter, Dart, Android Apps, iOS Apps, Cross Platform Solutions, Software Company, Devora Studios, Mobile Development, Firebase, Supabase, Node.js">
+  <meta name="author" content="Devora Studios">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devorastudios.dev/">
+  <meta property="og:title" content="Devora Studios | Premium Flutter & Cross-Platform App Development">
+  <meta property="og:description" content="Devora Studios designs and engineers premium Android, iOS, and Web solutions using Flutter. Clean code bases, scalable architectures, and beautiful interfaces.">
+  <meta property="og:image" content="https://devorastudios.dev/icons/og-image.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://devorastudios.dev/">
+  <meta property="twitter:title" content="Devora Studios | Premium Flutter & Cross-Platform App Development">
+  <meta property="twitter:description" content="Devora Studios designs and engineers premium Android, iOS, and Web solutions using Flutter. Clean code bases, scalable architectures, and beautiful interfaces.">
+  <meta property="twitter:image" content="https://devorastudios.dev/icons/og-image.png">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Devora Studios">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* Reset & Loading Screen Styling */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transition: background-color 0.3s ease;
+    }
+
+    /* System Theme Awareness for Loader */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #090D16;
+        color: #FFFFFF;
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      body {
+        background-color: #FFFFFF;
+        color: #0F172A;
+      }
+    }
+
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Double Pulse Spinner */
+    .spinner {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .double-bounce1, .double-bounce2 {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #4F46E5; /* Indigo */
+      opacity: 0.6;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: sk-bounce 2.0s infinite ease-in-out;
+    }
+
+    .double-bounce2 {
+      animation-delay: -1.0s;
+      background-color: #8B5CF6; /* Violet */
+    }
+
+    @keyframes sk-bounce {
+      0%, 100% { 
+        transform: scale(0.0);
+      } 50% { 
+        transform: scale(1.0);
+      }
+    }
+
+    .loader-text {
+      font-weight: 700;
+      letter-spacing: 3px;
+      font-size: 15px;
+      opacity: 0.8;
+      animation: pulse-text 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-text {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1.0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-container" id="loading-indicator">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+    <div class="loader-text">DEVORA STUDIOS</div>
+  </div>
+
+  <script>
+    // Remove loading indicator once Flutter is ready
+    window.addEventListener('load', function(ev) {
+      // Flutter bootstrap script handles rendering
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            // Remove CSS loader from DOM
+            var loader = document.getElementById('loading-indicator');
+            if (loader) {
+              loader.remove();
+            }
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
