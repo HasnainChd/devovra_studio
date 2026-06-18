@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../services/navigation_service.dart';
 
 class Footer extends StatelessWidget {
@@ -219,13 +220,23 @@ class Footer extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _SocialIcon(icon: Icons.code, tooltip: 'GitHub', onTap: () {}),
+        _SocialIcon(
+          icon: Icons.code_rounded,
+          tooltip: 'GitHub',
+          onTap: () => launchUrl(Uri.parse('https://github.com/Muhammad-Hasnain67'), mode: LaunchMode.externalApplication),
+        ),
         const SizedBox(width: 12),
-        _SocialIcon(icon: Icons.business, tooltip: 'LinkedIn', onTap: () {}),
+        _SocialIcon(
+          icon: Icons.business_rounded,
+          tooltip: 'LinkedIn',
+          onTap: () => launchUrl(Uri.parse('https://linkedin.com/in/muhammad-hasnain'), mode: LaunchMode.externalApplication),
+        ),
         const SizedBox(width: 12),
-        _SocialIcon(icon: Icons.chat_bubble_outline, tooltip: 'Twitter/X', onTap: () {}),
-        const SizedBox(width: 12),
-        _SocialIcon(icon: Icons.play_circle_outline, tooltip: 'YouTube', onTap: () {}),
+        _SocialIcon(
+          icon: Icons.language_rounded,
+          tooltip: 'Portfolio',
+          onTap: () => launchUrl(Uri.parse('https://nainportfolio.netlify.app/'), mode: LaunchMode.externalApplication),
+        ),
       ],
     );
   }

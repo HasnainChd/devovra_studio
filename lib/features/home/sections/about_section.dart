@@ -114,15 +114,15 @@ class AboutSection extends StatelessWidget {
         ),
         _buildStatCard(
           theme,
-          number: '50+',
-          label: 'Apps Delivered',
-          subLabel: 'Globally shipped',
+          number: '5+',
+          label: 'Projects Delivered',
+          subLabel: 'Premium apps shipped',
         ),
         _buildStatCard(
           theme,
-          number: '5x',
-          label: 'Faster Launch',
-          subLabel: 'Via Flutter efficiency',
+          number: '2+',
+          label: 'Years Experience',
+          subLabel: 'Active development',
         ),
         _buildStatCard(
           theme,

@@ -46,11 +46,6 @@ class ServicesSection extends StatelessWidget {
       description: 'Rapid backend integration: Realtime Database, Firestore, Authentication, Cloud Functions, FCM, and Analytics.',
     ),
     ServiceData(
-      icon: Icons.api_rounded,
-      title: 'Backend/API Integration',
-      description: 'Design and implementation of highly scalable RESTful APIs, Supabase databases, webhooks, Node.js routers, and third-party integrations.',
-    ),
-    ServiceData(
       icon: Icons.build_circle_outlined,
       title: 'App Maintenance',
       description: 'Post-launch operations, server health monitoring, immediate hotfixes, OS updates (iOS/Android), and ongoing performance optimization.',

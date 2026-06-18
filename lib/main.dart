@@ -3,8 +3,9 @@ import 'core/theme/app_theme.dart';
 import 'core/theme/theme_manager.dart';
 import 'services/router.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ThemeManager.init();
   runApp(const DevoraStudiosApp());
 }
 

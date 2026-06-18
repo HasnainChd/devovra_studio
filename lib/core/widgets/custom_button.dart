@@ -45,17 +45,6 @@ class _CustomButtonState extends State<CustomButton> {
       return Colors.white;
     }
 
-    Border? getBorder() {
-      if (widget.isSecondary) {
-        return Border.all(
-          color: _isHovered
-              ? primaryColor
-              : (isDark ? Colors.white.withValues(alpha: 0.15) : theme.dividerColor),
-          width: 1.5,
-        );
-      }
-      return null;
-    }
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
@@ -72,42 +61,38 @@ class _CustomButtonState extends State<CustomButton> {
             onPressed: widget.onPressed,
             style: OutlinedButton.styleFrom(
               backgroundColor: getBgColor(),
-              side: BorderSide.none, // Managed manually via custom decoration
+              side: widget.isSecondary ? BorderSide(
+                color: _isHovered
+                    ? primaryColor
+                    : (isDark ? Colors.white.withValues(alpha: 0.15) : theme.dividerColor),
+                width: 1.5,
+              ) : BorderSide.none,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 28),
             ),
-            child: Ink(
-              decoration: BoxDecoration(
-                border: getBorder(),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Container(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (widget.icon != null) ...[
-                      Icon(
-                        widget.icon,
-                        color: getTextColor(),
-                        size: 18,
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                    Text(
-                      widget.text,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: getTextColor(),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (widget.icon != null) ...[
+                  Icon(
+                    widget.icon,
+                    color: getTextColor(),
+                    size: 18,
+                  ),
+                  const SizedBox(width: 8),
+                ],
+                Text(
+                  widget.text,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: getTextColor(),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ),

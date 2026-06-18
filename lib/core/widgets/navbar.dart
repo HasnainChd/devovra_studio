@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/theme_manager.dart';
 import '../../services/navigation_service.dart';
+import 'custom_button.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   const NavBar({super.key});
@@ -97,21 +98,10 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     const SizedBox(width: 8),
                     if (MediaQuery.of(context).size.width >= 900)
-                      ElevatedButton(
+                      CustomButton(
+                        text: 'Get in Touch',
+                        height: 42,
                         onPressed: () => NavigationService.scrollToSection(context, 'contact'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: theme.colorScheme.primary,
-                          foregroundColor: Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                        ),
-                        child: const Text(
-                          'Get in Touch',
-                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
-                        ),
                       )
                     else
                       IconButton(

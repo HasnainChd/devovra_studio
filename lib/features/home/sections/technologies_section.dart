@@ -41,16 +41,16 @@ class TechnologiesSection extends StatelessWidget {
       activeColor: Color(0xFFFFCA28),
     ),
     TechData(
-      name: 'Supabase',
-      icon: Icons.bolt_rounded,
-      category: 'Backend / Database',
-      activeColor: Color(0xFF3ECF8E),
+      name: 'Xcode',
+      icon: Icons.apple_rounded,
+      category: 'iOS Suite',
+      activeColor: Color(0xFF1473E6),
     ),
     TechData(
-      name: 'Node.js',
-      icon: Icons.terminal_rounded,
-      category: 'Backend Dev',
-      activeColor: Color(0xFF339933),
+      name: 'Android Studio',
+      icon: Icons.android_rounded,
+      category: 'Android Suite',
+      activeColor: Color(0xFF3DDC84),
     ),
     TechData(
       name: 'Git',
@@ -65,9 +65,9 @@ class TechnologiesSection extends StatelessWidget {
       activeColor: Color(0xFF181717),
     ),
     TechData(
-      name: 'REST APIs',
-      icon: Icons.settings_ethernet_rounded,
-      category: 'Architecture',
+      name: 'App Publishing',
+      icon: Icons.publish_rounded,
+      category: 'Deployment',
       activeColor: Color(0xFF4F46E5),
     ),
   ];

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter/services.dart'; // For Clipboard
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/widgets/glass_container.dart';
 import '../../../core/widgets/responsive_layout.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../services/navigation_service.dart';
+import '../../../services/contact_service.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
@@ -36,8 +38,11 @@ class _ContactSectionState extends State<ContactSection> {
         _isSending = true;
       });
 
-      // Simulate API call
-      Future.delayed(const Duration(milliseconds: 1500), () {
+      ContactService.sendEmail(
+        name: _nameController.text.trim(),
+        email: _emailController.text.trim(),
+        message: _messageController.text.trim(),
+      ).then((_) {
         if (mounted) {
           setState(() {
             _isSending = false;
@@ -57,6 +62,26 @@ class _ContactSectionState extends State<ContactSection> {
               });
             }
           });
+        }
+      }).catchError((error) {
+        if (mounted) {
+          setState(() {
+            _isSending = false;
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  const Icon(Icons.error_outline_rounded, color: Colors.white),
+                  const SizedBox(width: 8),
+                  Expanded(child: Text('Failed to send message: ${error.toString().replaceAll('Exception: ', '')}')),
+                ],
+              ),
+              backgroundColor: Colors.redAccent,
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
+          );
         }
       });
     }
@@ -79,6 +104,17 @@ class _ContactSectionState extends State<ContactSection> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
+  }
+
+  Future<void> _launchURL(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not open link: $urlString')),
+        );
+      }
+    }
   }
 
   @override
@@ -253,11 +289,23 @@ class _ContactSectionState extends State<ContactSection> {
         const SizedBox(height: 16),
         Row(
           children: [
-            _SocialIcon(icon: Icons.code, label: 'GitHub', onTap: () {}),
+            _SocialIcon(
+              icon: Icons.code_rounded,
+              label: 'GitHub',
+              onTap: () => _launchURL('https://github.com/Muhammad-Hasnain67'),
+            ),
             const SizedBox(width: 12),
-            _SocialIcon(icon: Icons.business, label: 'LinkedIn', onTap: () {}),
+            _SocialIcon(
+              icon: Icons.business_rounded,
+              label: 'LinkedIn',
+              onTap: () => _launchURL('https://linkedin.com/in/muhammad-hasnain'),
+            ),
             const SizedBox(width: 12),
-            _SocialIcon(icon: Icons.chat_bubble_outline, label: 'Twitter', onTap: () {}),
+            _SocialIcon(
+              icon: Icons.language_rounded,
+              label: 'Portfolio',
+              onTap: () => _launchURL('https://nainportfolio.netlify.app/'),
+            ),
           ],
         ),
       ],
