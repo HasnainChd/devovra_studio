@@ -40,7 +40,7 @@ class _CustomButtonState extends State<CustomButton> {
 
     Color getTextColor() {
       if (widget.isSecondary) {
-        return isDark ? Colors.white : theme.colorScheme.onBackground;
+        return isDark ? Colors.white : theme.colorScheme.onSurface;
       }
       return Colors.white;
     }

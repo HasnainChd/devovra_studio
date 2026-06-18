@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Devora Studio (HTML Renderer - Offline Friendly)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--web-renderer",
+        "html"
+      ]
+    },
+    {
+      "name": "Devora Studio (CanvasKit Renderer)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--web-renderer",
+        "canvaskit"
+      ]
+    }
+  ]
+}

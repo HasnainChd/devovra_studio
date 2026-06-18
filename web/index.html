@@ -130,26 +130,6 @@
     <div class="loader-text">DEVORA STUDIOS</div>
   </div>
 
-  <script>
-    // Remove loading indicator once Flutter is ready
-    window.addEventListener('load', function(ev) {
-      // Flutter bootstrap script handles rendering
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            // Remove CSS loader from DOM
-            var loader = document.getElementById('loading-indicator');
-            if (loader) {
-              loader.remove();
-            }
-            appRunner.runApp();
-          });
-        }
-      });
-    });
-  </script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
