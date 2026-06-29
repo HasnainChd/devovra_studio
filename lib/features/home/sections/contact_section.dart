@@ -20,7 +20,7 @@ class _ContactSectionState extends State<ContactSection> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _messageController = TextEditingController();
-  
+
   bool _isSending = false;
   bool _sentSuccessfully = false;
 
@@ -48,12 +48,12 @@ class _ContactSectionState extends State<ContactSection> {
             _isSending = false;
             _sentSuccessfully = true;
           });
-          
+
           // Clear inputs
           _nameController.clear();
           _emailController.clear();
           _messageController.clear();
-          
+
           // Reset success state after a few seconds
           Future.delayed(const Duration(seconds: 4), () {
             if (mounted) {
@@ -74,12 +74,15 @@ class _ContactSectionState extends State<ContactSection> {
                 children: [
                   const Icon(Icons.error_outline_rounded, color: Colors.white),
                   const SizedBox(width: 8),
-                  Expanded(child: Text('Failed to send message: ${error.toString().replaceAll('Exception: ', '')}')),
+                  Expanded(
+                      child: Text(
+                          'Failed to send message: ${error.toString().replaceAll('Exception: ', '')}')),
                 ],
               ),
               backgroundColor: Colors.redAccent,
               behavior: SnackBarBehavior.floating,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
             ),
           );
         }
@@ -88,7 +91,8 @@ class _ContactSectionState extends State<ContactSection> {
   }
 
   void _copyEmailToClipboard(BuildContext context) {
-    Clipboard.setData(const ClipboardData(text: 'devcodeinnovations@gmail.com'));
+    Clipboard.setData(
+        const ClipboardData(text: 'devcodeinnovations@gmail.com'));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Row(
@@ -161,9 +165,7 @@ class _ContactSectionState extends State<ContactSection> {
                   ),
                 ),
               ).animate().fade(delay: 200.ms).slideY(begin: 0.2, end: 0),
-              
               const SizedBox(height: 60),
-              
               ResponsiveLayout(
                 mobile: _buildMobile(context, theme),
                 desktop: _buildDesktop(context, theme),
@@ -221,7 +223,7 @@ class _ContactSectionState extends State<ContactSection> {
           style: theme.textTheme.bodyMedium,
         ),
         const SizedBox(height: 32),
-        
+
         // Email card (clickable and copyable)
         MouseRegion(
           cursor: SystemMouseCursors.click,
@@ -277,9 +279,9 @@ class _ContactSectionState extends State<ContactSection> {
             ),
           ),
         ),
-        
+
         const SizedBox(height: 40),
-        
+
         Text(
           'Connect on Socials',
           style: theme.textTheme.titleMedium?.copyWith(
@@ -298,7 +300,8 @@ class _ContactSectionState extends State<ContactSection> {
             _SocialIcon(
               icon: Icons.business_rounded,
               label: 'LinkedIn',
-              onTap: () => _launchURL('https://linkedin.com/in/muhammad-hasnain'),
+              onTap: () => _launchURL(
+                  'https://www.linkedin.com/in/muhammad-hasnain309/'),
             ),
             const SizedBox(width: 12),
             _SocialIcon(
@@ -314,7 +317,7 @@ class _ContactSectionState extends State<ContactSection> {
 
   Widget _buildFormCard(ThemeData theme) {
     final isDark = theme.brightness == Brightness.dark;
-    
+
     return GlassContainer(
       customColor: isDark ? const Color(0xFF131924) : Colors.white,
       padding: const EdgeInsets.all(32),
@@ -331,7 +334,7 @@ class _ContactSectionState extends State<ContactSection> {
               ),
             ),
             const SizedBox(height: 24),
-            
+
             // Name Field
             _buildTextFormField(
               theme,
@@ -346,7 +349,7 @@ class _ContactSectionState extends State<ContactSection> {
               },
             ),
             const SizedBox(height: 20),
-            
+
             // Email Field
             _buildTextFormField(
               theme,
@@ -366,13 +369,14 @@ class _ContactSectionState extends State<ContactSection> {
               },
             ),
             const SizedBox(height: 20),
-            
+
             // Message Field
             _buildTextFormField(
               theme,
               controller: _messageController,
               label: 'Project Details / Message',
-              hint: 'Describe your application, platform requirements, and estimated timeframe...',
+              hint:
+                  'Describe your application, platform requirements, and estimated timeframe...',
               maxLines: 5,
               validator: (val) {
                 if (val == null || val.trim().isEmpty) {
@@ -382,7 +386,7 @@ class _ContactSectionState extends State<ContactSection> {
               },
             ),
             const SizedBox(height: 32),
-            
+
             // Submit Button or Success State
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
@@ -392,13 +396,16 @@ class _ContactSectionState extends State<ContactSection> {
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       decoration: BoxDecoration(
                         color: const Color(0xFF10B981).withValues(alpha: 0.08),
-                        border: Border.all(color: const Color(0xFF10B981).withValues(alpha: 0.3)),
+                        border: Border.all(
+                            color:
+                                const Color(0xFF10B981).withValues(alpha: 0.3)),
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.check_circle_rounded, color: Color(0xFF10B981)),
+                          Icon(Icons.check_circle_rounded,
+                              color: Color(0xFF10B981)),
                           SizedBox(width: 8),
                           Text(
                             'Message sent successfully!',
@@ -461,19 +468,26 @@ class _ContactSectionState extends State<ContactSection> {
               color: isDark ? Colors.white30 : Colors.black38,
               fontSize: 14,
             ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             filled: true,
-            fillColor: isDark ? Colors.white.withValues(alpha: 0.03) : Colors.black.withValues(alpha: 0.015),
+            fillColor: isDark
+                ? Colors.white.withValues(alpha: 0.03)
+                : Colors.black.withValues(alpha: 0.015),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(
-                color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08),
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.08)
+                    : Colors.black.withValues(alpha: 0.08),
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(
-                color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08),
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.08)
+                    : Colors.black.withValues(alpha: 0.08),
               ),
             ),
             focusedBorder: OutlineInputBorder(
@@ -508,7 +522,8 @@ class _SocialIcon extends StatefulWidget {
   final String label;
   final VoidCallback onTap;
 
-  const _SocialIcon({required this.icon, required this.label, required this.onTap});
+  const _SocialIcon(
+      {required this.icon, required this.label, required this.onTap});
 
   @override
   State<_SocialIcon> createState() => _SocialIconState();
@@ -534,7 +549,9 @@ class _SocialIconState extends State<_SocialIcon> {
           decoration: BoxDecoration(
             color: _isHovered
                 ? theme.colorScheme.primary
-                : (isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.04)),
+                : (isDark
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : Colors.black.withValues(alpha: 0.04)),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
@@ -543,13 +560,17 @@ class _SocialIconState extends State<_SocialIcon> {
               Icon(
                 widget.icon,
                 size: 16,
-                color: _isHovered ? Colors.white : (isDark ? Colors.white70 : Colors.black87),
+                color: _isHovered
+                    ? Colors.white
+                    : (isDark ? Colors.white70 : Colors.black87),
               ),
               const SizedBox(width: 8),
               Text(
                 widget.label,
                 style: TextStyle(
-                  color: _isHovered ? Colors.white : (isDark ? Colors.white70 : Colors.black87),
+                  color: _isHovered
+                      ? Colors.white
+                      : (isDark ? Colors.white70 : Colors.black87),
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
                 ),

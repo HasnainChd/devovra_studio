@@ -120,6 +120,16 @@ class Footer extends StatelessWidget {
                         text: 'Terms of Service',
                         onTap: () => context.go('/terms'),
                       ),
+                      const SizedBox(width: 24),
+                      _FooterBottomLink(
+                        text: 'Equaly Privacy',
+                        onTap: () => context.go('/equaly/privacy'),
+                      ),
+                      const SizedBox(width: 24),
+                      _FooterBottomLink(
+                        text: 'Equaly Terms',
+                        onTap: () => context.go('/equaly/terms'),
+                      ),
                     ],
                   ),
                 ],
@@ -168,29 +178,45 @@ class Footer extends StatelessWidget {
     );
   }
 
-  Widget _buildLinks(BuildContext context, ThemeData theme, {bool isCenter = false}) {
-    final alignment = isCenter ? CrossAxisAlignment.center : CrossAxisAlignment.start;
+  Widget _buildLinks(BuildContext context, ThemeData theme,
+      {bool isCenter = false}) {
+    final alignment =
+        isCenter ? CrossAxisAlignment.center : CrossAxisAlignment.start;
     return Column(
       crossAxisAlignment: alignment,
       children: [
-        _FooterLink(text: 'Home', onTap: () => NavigationService.scrollToSection(context, 'hero')),
-        _FooterLink(text: 'About Us', onTap: () => NavigationService.scrollToSection(context, 'about')),
-        _FooterLink(text: 'Our Services', onTap: () => NavigationService.scrollToSection(context, 'services')),
-        _FooterLink(text: 'Technologies', onTap: () => NavigationService.scrollToSection(context, 'technologies')),
-        _FooterLink(text: 'Why Choose Us', onTap: () => NavigationService.scrollToSection(context, 'why')),
+        _FooterLink(
+            text: 'Home',
+            onTap: () => NavigationService.scrollToSection(context, 'hero')),
+        _FooterLink(
+            text: 'About Us',
+            onTap: () => NavigationService.scrollToSection(context, 'about')),
+        _FooterLink(
+            text: 'Our Services',
+            onTap: () =>
+                NavigationService.scrollToSection(context, 'services')),
+        _FooterLink(
+            text: 'Technologies',
+            onTap: () =>
+                NavigationService.scrollToSection(context, 'technologies')),
+        _FooterLink(
+            text: 'Why Choose Us',
+            onTap: () => NavigationService.scrollToSection(context, 'why')),
       ],
     );
   }
 
   Widget _buildContact(ThemeData theme, {bool isCenter = false}) {
-    final alignment = isCenter ? CrossAxisAlignment.center : CrossAxisAlignment.start;
+    final alignment =
+        isCenter ? CrossAxisAlignment.center : CrossAxisAlignment.start;
     return Column(
       crossAxisAlignment: alignment,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.mail_outline_rounded, size: 16, color: theme.colorScheme.primary),
+            Icon(Icons.mail_outline_rounded,
+                size: 16, color: theme.colorScheme.primary),
             const SizedBox(width: 8),
             SelectableText(
               'devcodeinnovations@gmail.com',
@@ -204,7 +230,8 @@ class Footer extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.location_on_outlined, size: 16, color: theme.colorScheme.primary),
+            Icon(Icons.location_on_outlined,
+                size: 16, color: theme.colorScheme.primary),
             const SizedBox(width: 8),
             Text(
               'Global Digital Agency',
@@ -223,19 +250,25 @@ class Footer extends StatelessWidget {
         _SocialIcon(
           icon: Icons.code_rounded,
           tooltip: 'GitHub',
-          onTap: () => launchUrl(Uri.parse('https://github.com/Muhammad-Hasnain67'), mode: LaunchMode.externalApplication),
+          onTap: () => launchUrl(
+              Uri.parse('https://github.com/Muhammad-Hasnain67'),
+              mode: LaunchMode.externalApplication),
         ),
         const SizedBox(width: 12),
         _SocialIcon(
           icon: Icons.business_rounded,
           tooltip: 'LinkedIn',
-          onTap: () => launchUrl(Uri.parse('https://linkedin.com/in/muhammad-hasnain'), mode: LaunchMode.externalApplication),
+          onTap: () => launchUrl(
+              Uri.parse('https://www.linkedin.com/in/muhammad-hasnain309/'),
+              mode: LaunchMode.externalApplication),
         ),
         const SizedBox(width: 12),
         _SocialIcon(
           icon: Icons.language_rounded,
           tooltip: 'Portfolio',
-          onTap: () => launchUrl(Uri.parse('https://nainportfolio.netlify.app/'), mode: LaunchMode.externalApplication),
+          onTap: () => launchUrl(
+              Uri.parse('https://nainportfolio.netlify.app/'),
+              mode: LaunchMode.externalApplication),
         ),
       ],
     );
@@ -269,7 +302,9 @@ class _FooterLinkState extends State<_FooterLink> {
           child: Text(
             widget.text,
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: _isHovered ? theme.colorScheme.primary : theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
+              color: _isHovered
+                  ? theme.colorScheme.primary
+                  : theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
               fontWeight: _isHovered ? FontWeight.w600 : FontWeight.normal,
             ),
           ),
@@ -305,8 +340,11 @@ class _FooterBottomLinkState extends State<_FooterBottomLink> {
         child: Text(
           widget.text,
           style: theme.textTheme.bodySmall?.copyWith(
-            color: _isHovered ? theme.colorScheme.primary : (isDark ? Colors.white38 : Colors.black45),
-            decoration: _isHovered ? TextDecoration.underline : TextDecoration.none,
+            color: _isHovered
+                ? theme.colorScheme.primary
+                : (isDark ? Colors.white38 : Colors.black45),
+            decoration:
+                _isHovered ? TextDecoration.underline : TextDecoration.none,
           ),
         ),
       ),
@@ -319,7 +357,8 @@ class _SocialIcon extends StatefulWidget {
   final String tooltip;
   final VoidCallback onTap;
 
-  const _SocialIcon({required this.icon, required this.tooltip, required this.onTap});
+  const _SocialIcon(
+      {required this.icon, required this.tooltip, required this.onTap});
 
   @override
   State<_SocialIcon> createState() => _SocialIconState();
@@ -347,7 +386,9 @@ class _SocialIconState extends State<_SocialIcon> {
             decoration: BoxDecoration(
               color: _isHovered
                   ? theme.colorScheme.primary
-                  : (isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.04)),
+                  : (isDark
+                      ? Colors.white.withValues(alpha: 0.05)
+                      : Colors.black.withValues(alpha: 0.04)),
               shape: BoxShape.circle,
             ),
             child: Icon(
