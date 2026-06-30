@@ -5,6 +5,7 @@ import '../pages/privacy_policy_page.dart';
 import '../pages/terms_of_service_page.dart';
 import '../pages/equaly_privacy_page.dart';
 import '../pages/equaly_terms_page.dart';
+import '../pages/delete_account_page.dart';
 import '../pages/not_found_page.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -77,6 +78,21 @@ final GoRouter appRouter = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
         child: const EqualyTermsPage(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: CurveTween(curve: Curves.easeInOutCubic).animate(animation),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 400),
+      ),
+    ),
+    GoRoute(
+      path: '/delete-account',
+      name: 'delete_account',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const DeleteAccountPage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: CurveTween(curve: Curves.easeInOutCubic).animate(animation),
