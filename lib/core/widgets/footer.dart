@@ -130,6 +130,11 @@ class Footer extends StatelessWidget {
                         text: 'Equaly Terms',
                         onTap: () => context.go('/equaly/terms'),
                       ),
+                      const SizedBox(width: 24),
+                      _FooterBottomLink(
+                        text: 'Delete Account',
+                        onTap: () => context.go('/delete-account'),
+                      ),
                     ],
                   ),
                 ],
